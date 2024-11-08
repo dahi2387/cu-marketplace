@@ -10,16 +10,8 @@ const path = require('path');
 const pgp = require('pg-promise')(); // To connect to the Postgres DB from the node server
 const bodyParser = require('body-parser');
 const session = require('express-session'); // To set the session object. To store or access session data, use the `req.session`, which is (generally) serialized as JSON by the store.
-// const bcrypt = require('bcryptjs'); //  To hash passwords
-// const axios = require('axios'); // To make HTTP requests from our server
-
-// const fs = require('fs');
-// const filePath = path.join(__dirname, 'ProjectSourceCode/src/views/pages/register.hbs');
-
-// fs.access(filePath, fs.constants.F_OK, (err) => {
-//   console.log(err ? "File does not exist" : "File exists at", filePath);
-// });
-
+const bcrypt = require('bcryptjs'); //  To hash passwords
+const axios = require('axios'); // To make HTTP requests from our server
 
 // *****************************************************
 // <!-- Section 2 : Connect to DB -->
@@ -84,6 +76,22 @@ app.use(
 
 app.get('/', (req, res) => {
   res.render('pages/register');
+});
+
+app.post('/register', async (req, res) => {
+  // hash the password using bcrypt library
+  const hash = await bcrypt.hash(req.body.password, 10);
+  const query = "insert into users (email, password) values ($1, $2);";
+  
+  db.none(query, [req.body.email, hash])
+    .then(() => {
+      req.session.save();
+      res.redirect('/login');
+    })
+    .catch((err) => {
+      console.log(err);
+      res.redirect('/register');
+    });
 });
 
 app.get('/welcome', (req, res) => {
