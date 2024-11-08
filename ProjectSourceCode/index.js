@@ -13,6 +13,14 @@ const session = require('express-session'); // To set the session object. To sto
 // const bcrypt = require('bcryptjs'); //  To hash passwords
 // const axios = require('axios'); // To make HTTP requests from our server
 
+const fs = require('fs');
+const filePath = path.join(__dirname, 'ProjectSourceCode/src/views/pages/register.hbs');
+
+fs.access(filePath, fs.constants.F_OK, (err) => {
+  console.log(err ? "File does not exist" : "File exists at", filePath);
+});
+
+
 // *****************************************************
 // <!-- Section 2 : Connect to DB -->
 // *****************************************************
@@ -52,7 +60,7 @@ db.connect()
 // Register `hbs` as our view engine using its bound `engine()` function.
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, '/ProjectSourceCode/src/views'));
+app.set('views', '/repository/ProjectSourceCode/src/views');
 app.use(bodyParser.json()); // specify the usage of JSON for parsing request body.
 
 // initialize session variables
@@ -75,7 +83,13 @@ app.use(
 // *****************************************************
 
 app.get('/', (req, res) => {
-  res.render('pages/register');
+  console.log("Views directory is set to:", app.get('views'));
+
+  res.render('/pages/register');
+});
+
+app.get('/welcome', (req, res) => {
+  res.json({status: 'success', message: 'Welcome!'});
 });
 
 // *****************************************************
@@ -83,5 +97,5 @@ app.get('/', (req, res) => {
 // *****************************************************
 // starting the server and keeping the connection open to listen for more requests
 
-app.listen(3000);
+module.exports = app.listen(3000);
 console.log('Server is listening on port 3000');
