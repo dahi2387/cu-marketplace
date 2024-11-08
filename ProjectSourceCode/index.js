@@ -10,8 +10,8 @@ const path = require('path');
 const pgp = require('pg-promise')(); // To connect to the Postgres DB from the node server
 const bodyParser = require('body-parser');
 const session = require('express-session'); // To set the session object. To store or access session data, use the `req.session`, which is (generally) serialized as JSON by the store.
-const bcrypt = require('bcryptjs'); //  To hash passwords
-const axios = require('axios'); // To make HTTP requests from our server. We'll learn more about it in Part C.
+// const bcrypt = require('bcryptjs'); //  To hash passwords
+// const axios = require('axios'); // To make HTTP requests from our server
 
 // *****************************************************
 // <!-- Section 2 : Connect to DB -->
@@ -45,28 +45,34 @@ db.connect()
     console.log('ERROR:', error.message || error);
   });
 
-// -------------------------------------  DB CONFIG AND CONNECT   ---------------------------------------
-const dbConfig = {
-  host: 'db',
-  port: 5432,
-  database: process.env.POSTGRES_DB,
-  user: process.env.POSTGRES_USER,
-  password: process.env.POSTGRES_PASSWORD,
-};
-const db = pgp(dbConfig);
+// *****************************************************
+// <!-- Section 3 : App Settings -->
+// *****************************************************
 
-// db test
-db.connect()
-  .then(obj => {
-    // Can check the server version here (pg-promise v10.1.0+):
-    console.log('Database connection successful');
-    obj.done(); // success, release the connection;
+// Register `hbs` as our view engine using its bound `engine()` function.
+app.engine('hbs', hbs.engine);
+app.set('view engine', 'hbs');
+app.set('views', path.join(__dirname, '/ProjectSourceCode/src/views'));
+app.use(bodyParser.json()); // specify the usage of JSON for parsing request body.
+
+// initialize session variables
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    saveUninitialized: false,
+    resave: false,
   })
-  .catch(error => {
-    console.log('ERROR', error.message || error);
-  });
+);
 
-// -------------------------------------  ROUTES for home.hbs   ----------------------------------------------
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
+
+// *****************************************************
+// <!-- Section 4 : API Routes -->
+// *****************************************************
 
 app.get('/', (req, res) => {
   res.render('pages/register');
