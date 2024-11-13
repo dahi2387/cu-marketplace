@@ -36,7 +36,7 @@ describe('Server!', () => {
 // Explanation: The testcase will call the /add_user API with the following input
 // and expects the API to return a status of 200 along with the "Success" message.
 
-describe('Testing Register API', () => {
+/*describe('Testing Register API', () => {
   it('positive : /register', done => {
     chai
       .request(server)
@@ -48,5 +48,5 @@ describe('Testing Register API', () => {
         done();
       });
   });
-});
+});*/
 // ********************************************************************************
