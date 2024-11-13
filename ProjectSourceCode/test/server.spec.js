@@ -48,5 +48,17 @@ describe('Server!', () => {
         done();
       });
   });
+  //Negative test case
+  it('Negative : /register. Checking invalid registration', done => {
+    chai
+      .request(server)
+      .post('/register')
+      .send({email: 'janedoe@gmail.com', password: '123'})
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.message).to.equals('Invalid input');
+        done();
+      });
+  });
 });*/
 // ********************************************************************************
