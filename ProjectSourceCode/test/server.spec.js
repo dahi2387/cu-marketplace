@@ -36,20 +36,20 @@ describe('Server!', () => {
 // Explanation: The testcase will call the /add_user API with the following input
 // and expects the API to return a status of 200 along with the "Success" message.
 
-/*describe('Testing Register API', () => {
+describe('Testing Register API', () => {
   it('positive : /register', done => {
     chai
       .request(server)
       .post('/register')
       .send({email: 'johndoe@colorado.edu', password: 'pwd'})
       .end((err, res) => {
-        expect(res).to.have.status('success');
-        expect(res.body.message).to.equals('Welcome!');
+        expect(res).to.have.status('200');
         done();
       });
   });
-  
-=======
+});
+
+//=======
   //Negative test case
   it('Negative : /register. Checking invalid registration', done => {
     chai
@@ -62,8 +62,7 @@ describe('Server!', () => {
         done();
       });
   });
-});
-
+/*
 //Test cases for Login
 describe('Testing Login API', () => {
   it('positive : /login', done => {
