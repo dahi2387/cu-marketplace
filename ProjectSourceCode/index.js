@@ -74,7 +74,13 @@ app.use(
 // <!-- Section 4 : API Routes -->
 // *****************************************************
 
+// Home Routes
 app.get('/', (req, res) => {
+  res.render('pages/register');
+});
+
+// Register Routes
+app.get('/register', (req, res) => {
   res.render('pages/register');
 });
 
@@ -94,6 +100,43 @@ app.post('/register', async (req, res) => {
     });
 });
 
+// Login Routes
+app.get('/login', (req, res) => {
+  res.render('pages/login');
+});
+
+app.post('/login', async (req, res) => {
+  const query = "select * from users where users.username = $1 limit 1";
+  const username = req.body.username;
+
+  try {
+    const user = await db.one(query, [username]);
+    
+    if (!user) {
+      res.redirect('/register');
+    }
+
+    // check if password from request matches with password in DB
+    const match = await bcrypt.compare(req.body.password, user.password);
+
+    if (match) {
+      //save user details in session like in lab 7
+      req.session.user = user;
+      req.session.save();
+      res.redirect('/discover');
+    } else {
+      res.render('pages/login', {
+        message: `Incorrect username or password.`,
+      });
+    }
+  } catch (err) {
+    console.log(err);
+    res.redirect('/register');
+  }
+});
+
+
+// Filler
 app.get('/welcome', (req, res) => {
   res.json({status: 'success', message: 'Welcome!'});
 });
