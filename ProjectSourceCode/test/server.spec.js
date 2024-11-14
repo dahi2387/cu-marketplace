@@ -48,5 +48,46 @@ describe('Server!', () => {
         done();
       });
   });
+  
+=======
+  //Negative test case
+  it('Negative : /register. Checking invalid registration', done => {
+    chai
+      .request(server)
+      .post('/register')
+      .send({email: 'janedoe@gmail.com', password: '123'})
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.message).to.equals('Invalid input');
+        done();
+      });
+  });
+});
+
+//Test cases for Login
+describe('Testing Login API', () => {
+  it('positive : /login', done => {
+    chai
+      .request(server)
+      .post('/login')
+      .send({email: 'abc@colorado.edu', password: '456'})
+      .end((err, res) => {
+        expect(res).to.have.status('success');
+        expect(res.body.message).to.equals('Welcome!');
+        done();
+      });
+  });
+  //Negative test case
+  it('Negative : /login. Checking invalid login', done => {
+    chai
+      .request(server)
+      .post('/login')
+      .send({email: 'xyz@gmail.com', password: '321'})
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.message).to.equals('Invalid input');
+        done();
+      });
+  });
 });*/
 // ********************************************************************************
