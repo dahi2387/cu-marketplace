@@ -48,6 +48,8 @@ describe('Server!', () => {
         done();
       });
   });
+  
+=======
   //Negative test case
   it('Negative : /register. Checking invalid registration', done => {
     chai
