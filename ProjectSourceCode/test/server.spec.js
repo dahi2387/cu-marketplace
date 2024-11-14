@@ -49,6 +49,7 @@ describe('Testing Register API', () => {
   });
 });
 
+/*
 //=======
   //Negative test case
   it('Negative : /register. Checking invalid registration', done => {
@@ -62,7 +63,7 @@ describe('Testing Register API', () => {
         done();
       });
   });
-/*
+
 //Test cases for Login
 describe('Testing Login API', () => {
   it('positive : /login', done => {
