@@ -105,7 +105,10 @@ app.post('/register', async (req, res) => {
     })
     .catch((err) => {
       console.log(err);
-      res.redirect('/register');
+      // res.redirect('/register');
+      res.render('pages/register', {
+        message: 'There was an error with your registration.',
+      });
     });
 });
 
@@ -115,11 +118,11 @@ app.get('/login', (req, res) => {
 });
 
 app.post('/login', async (req, res) => {
-  const query = "select * from users where users.username = $1 limit 1";
-  const username = req.body.username;
+  const query = "select * from users where users.email = $1 limit 1";
+  const email = req.body.email;
 
   try {
-    const user = await db.one(query, [username]);
+    const user = await db.one(query, [email]);
     
     if (!user) {
       res.redirect('/register');
@@ -135,12 +138,15 @@ app.post('/login', async (req, res) => {
       res.redirect('/events');
     } else {
       res.render('pages/login', {
-        message: `Incorrect username or password.`,
+        message: `Incorrect username or password (Likely password).`,
       });
     }
   } catch (err) {
     console.log(err);
-    res.redirect('/register');
+    // res.redirect('/register');
+    res.render('pages/login', {
+      message: 'Your username could not be found, or there was an error with your login.',
+    });
   }
 });
 
