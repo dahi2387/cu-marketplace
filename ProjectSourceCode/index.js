@@ -85,11 +85,20 @@ app.get('/register', (req, res) => {
 });
 
 app.post('/register', async (req, res) => {
+
+  const email = req.body.email;
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@colorado\.edu$/;
+
+  if (!emailPattern.test(email)) {
+    console.log("Invalid email domain.");
+    return res.status(400).send("Invalid email domain. Please use a colorado.edu email.");
+  }
+
   // hash the password using bcrypt library
   const hash = await bcrypt.hash(req.body.password, 10);
   const query = "insert into users (email, password) values ($1, $2);";
   
-  db.none(query, [req.body.email, hash])
+  db.none(query, [email, hash])
     .then(() => {
       req.session.save();
       res.redirect('/login');

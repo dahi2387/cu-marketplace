@@ -28,15 +28,9 @@ describe('Server!', () => {
 });
 
 // *********************** TODO: WRITE 2 UNIT TESTCASES **************************
-// Example Positive Testcase :
-// API: /add_user
-// Input: {id: 5, name: 'John Doe', dob: '2020-02-20'}
-// Expect: res.status == 200 and res.body.message == 'Success'
-// Result: This test case should pass and return a status 200 along with a "Success" message.
-// Explanation: The testcase will call the /add_user API with the following input
-// and expects the API to return a status of 200 along with the "Success" message.
 
 describe('Testing Register API', () => {
+  // Positive test case
   it('positive : /register', done => {
     chai
       .request(server)
@@ -47,11 +41,8 @@ describe('Testing Register API', () => {
         done();
       });
   });
-});
 
-/*
-//=======
-  //Negative test case
+  // Negative test case
   it('Negative : /register. Checking invalid registration', done => {
     chai
       .request(server)
@@ -59,11 +50,12 @@ describe('Testing Register API', () => {
       .send({email: 'janedoe@gmail.com', password: '123'})
       .end((err, res) => {
         expect(res).to.have.status(400);
-        expect(res.body.message).to.equals('Invalid input');
+        //expect(res.body.message).to.equals('Invalid email domain. Please use a colorado.edu email.');
         done();
       });
   });
-
+});
+/*
 //Test cases for Login
 describe('Testing Login API', () => {
   it('positive : /login', done => {
