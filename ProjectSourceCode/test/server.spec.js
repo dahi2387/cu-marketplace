@@ -28,7 +28,7 @@ describe('Server!', () => {
 });
 
 // *********************** TODO: WRITE 2 UNIT TESTCASES **************************
-
+// Test cases for Register
 describe('Testing Register API', () => {
   // Positive test case
   it('positive : /register', done => {
@@ -55,31 +55,35 @@ describe('Testing Register API', () => {
       });
   });
 });
-/*
+// ********************************************************************************
+
+// *********************** TODO: WRITE 2 MORE UNIT TESTCASES **************************
 //Test cases for Login
 describe('Testing Login API', () => {
+  // Positive test case
   it('positive : /login', done => {
     chai
       .request(server)
       .post('/login')
       .send({email: 'abc@colorado.edu', password: '456'})
       .end((err, res) => {
-        expect(res).to.have.status('success');
-        expect(res.body.message).to.equals('Welcome!');
+        expect(res).to.have.status('200');
+        //expect(res.body.message).to.equals('Welcome!');
         done();
       });
   });
-  //Negative test case
-  it('Negative : /login. Checking invalid login', done => {
+
+  // Negative test case
+  /*it('Negative : /login. Checking invalid login', done => {
     chai
       .request(server)
       .post('/login')
       .send({email: 'xyz@gmail.com', password: '321'})
       .end((err, res) => {
         expect(res).to.have.status(400);
-        expect(res.body.message).to.equals('Invalid input');
+        //expect(res.body.message).to.equals('Invalid input');
         done();
       });
-  });
-});*/
+  });*/
+});
 // ********************************************************************************
