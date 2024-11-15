@@ -155,6 +155,12 @@ app.get('/events', (req, res) => { // TODO: should only be able to access if log
   res.render('pages/events');
 });
 
+// Logout Routes
+app.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.render('pages/logout');
+});
+
 // Lab 11 Stub
 app.get('/welcome', (req, res) => {
   res.json({status: 'success', message: 'Welcome!'});
