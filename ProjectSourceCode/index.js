@@ -132,7 +132,7 @@ app.post('/login', async (req, res) => {
       //save user details in session like in lab 7
       req.session.user = user;
       req.session.save();
-      res.redirect('/discover');
+      res.redirect('/events');
     } else {
       res.render('pages/login', {
         message: `Incorrect username or password.`,
@@ -144,8 +144,12 @@ app.post('/login', async (req, res) => {
   }
 });
 
+// Events Routes
+app.get('/events', (req, res) => { // TODO: should only be able to access if logged in
+  res.render('pages/events');
+});
 
-// Filler
+// Lab 11 Stub
 app.get('/welcome', (req, res) => {
   res.json({status: 'success', message: 'Welcome!'});
 });

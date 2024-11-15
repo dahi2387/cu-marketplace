@@ -4,7 +4,9 @@
     </div>
     <div class="mb-3">
         <label for="usernameInput" class="form-label">Student Email</label>
-        <input id="usernameInput" name="email" class="form-control">
+        <input id="usernameInput" name="email" class="form-control"
+                pattern="^[a-z]{4}\d{4}@colorado\.edu$" 
+               title="Email must be in the format: 4 lowercase letters, 4 digits, followed by '@colorado.edu' (identikey email)" required>
     </div>
     <div class="mb-3">
         <label for="passInput" class="form-label">Password</label>
