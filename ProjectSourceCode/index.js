@@ -76,7 +76,7 @@ app.use(
 
 // Home Routes
 app.get('/', (req, res) => {
-  res.render('pages/register');
+  res.render('pages/home');
 });
 
 // Register Routes
