@@ -166,6 +166,9 @@ app.get('/welcome', (req, res) => {
   res.json({status: 'success', message: 'Welcome!'});
 });
 
+app.get('/buy', (req, res) => {
+  res.render('pages/buy');
+});
 // *****************************************************
 // <!-- Section 5 : Start Server-->
 // *****************************************************
