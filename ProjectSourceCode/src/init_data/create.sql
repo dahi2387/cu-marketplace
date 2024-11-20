@@ -1,4 +1,43 @@
-CREATE TABLE IF NOT EXISTS users (
-    email VARCHAR(50) PRIMARY KEY,
-    password CHAR(60) NOT NULL
+CREATE TABLE Users
+(
+  Email CHAR(21) NOT NULL,
+  Password INT NOT NULL,
+  PRIMARY KEY (Email)
+);
+
+CREATE TABLE Event
+(
+  EventName INT NOT NULL,
+  Date INT NOT NULL,
+  EventID INT NOT NULL,
+  PRIMARY KEY (EventID)
+);
+
+CREATE TABLE Tickets
+(
+  TicketID INT NOT NULL,
+  isForSale CHAR(1) NOT NULL,
+  Email CHAR(21) NOT NULL,
+  EventID INT NOT NULL,
+  PRIMARY KEY (TicketID),
+  FOREIGN KEY (Email) REFERENCES Users(Email),
+  FOREIGN KEY (EventID) REFERENCES Event(EventID)
+);
+
+CREATE TABLE Asks
+(
+  Price INT NOT NULL,
+  TicketID INT NOT NULL,
+  Email CHAR(21) NOT NULL,
+  FOREIGN KEY (TicketID) REFERENCES Tickets(TicketID),
+  FOREIGN KEY (Email) REFERENCES Users(Email)
+);
+
+CREATE TABLE Bids
+(
+  Price INT NOT NULL,
+  Email CHAR(21) NOT NULL,
+  TicketID INT NOT NULL,
+  FOREIGN KEY (Email) REFERENCES Users(Email),
+  FOREIGN KEY (TicketID) REFERENCES Tickets(TicketID)
 );
