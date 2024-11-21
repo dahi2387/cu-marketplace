@@ -1,0 +1,172 @@
+{{!-- views/bid.hbs --}}
+
+<div class="container py-4">
+    {{!-- Navigation Header --}}
+    <nav class="navbar navbar-light bg-light mb-4">
+        <div class="container-fluid">
+            <button onclick="window.history.back()" class="btn btn-outline-secondary">
+                ← Back
+            </button>
+            <span class="navbar-brand mb-0 h1">BUFF MARKET</span>
+            <div>
+                <a href="/help" class="btn btn-link">Help</a>
+                <a href="/profile" class="btn btn-link">Profile</a>
+            </div>
+        </div>
+    </nav>
+
+    {{!-- Event Details Card --}}
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="row mb-4">
+                <div class="col">
+                    <h2 class="card-title">{{event.homeTeam}} vs {{event.awayTeam}}</h2>
+                    <p class="text-muted">{{event.date}} at {{event.time}}</p>
+                    <p class="text-muted">{{event.location}}</p>
+                </div>
+                <div class="col-auto text-end">
+                    <small class="text-muted">Current Market Price</small>
+                    <h3 class="text-success">${{event.marketPrice}}</h3>
+                </div>
+            </div>
+
+            {{!-- Market Statistics --}}
+            <div class="bg-light p-3 rounded mb-4">
+                <h4 class="h5 mb-3">Market Statistics</h4>
+                <div class="row text-center">
+                    <div class="col">
+                        <small class="text-muted">Lowest Ask</small>
+                        <p class="fw-bold">${{event.lowestAsk}}</p>
+                    </div>
+                    <div class="col">
+                        <small class="text-muted">Highest Bid</small>
+                        <p class="fw-bold">${{event.highestBid}}</p>
+                    </div>
+                    <div class="col">
+                        <small class="text-muted">Last Sale</small>
+                        <p class="fw-bold">${{event.lastSale}}</p>
+                    </div>
+                </div>
+            </div>
+
+            {{!-- Bid Form --}}
+            <form action="/place-bid" method="POST">
+                <div class="mb-4">
+                    <h4 class="h5 mb-3">Quick Bid Options</h4>
+                    <div class="row g-2 mb-3">
+                        {{#each event.quickBidOptions}}
+                            <div class="col">
+                                <button type="button" 
+                                        onclick="selectPrice({{this}})" 
+                                        class="btn btn-outline-primary w-100">
+                                    ${{this}}
+                                </button>
+                            </div>
+                        {{/each}}
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Custom Bid Amount</label>
+                    <div class="input-group">
+                        <span class="input-group-text">$</span>
+                        <input type="number" 
+                               name="bidAmount" 
+                               id="bidAmount" 
+                               step="0.01"
+                               class="form-control"
+                               placeholder="0.00">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Quantity</label>
+                    <select name="quantity" class="form-select">
+                        <option value="1">1 ticket</option>
+                        <option value="2">2 tickets</option>
+                        <option value="3">3 tickets</option>
+                        <option value="4">4 tickets</option>
+                        <option value="5">5 tickets</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Bid Expiration</label>
+                    <select name="expiration" class="form-select">
+                        <option value="1">1 hour</option>
+                        <option value="2">2 hours</option>
+                        <option value="4">4 hours</option>
+                        <option value="24">24 hours</option>
+                    </select>
+                </div>
+
+                {{!-- Price Calculations --}}
+                <div class="border-top pt-3 mb-3">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="text-muted">Subtotal:</span>
+                        <span class="fw-bold" id="subtotal">$0.00</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="text-muted">Service Fee:</span>
+                        <span class="fw-bold" id="serviceFee">$0.00</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span class="fw-bold">Total:</span>
+                        <span class="fw-bold" id="total">$0.00</span>
+                    </div>
+                </div>
+
+                {{!-- Action Buttons --}}
+                <div class="d-flex justify-content-end gap-2">
+                    <button type="button" 
+                            onclick="window.history.back()" 
+                            class="btn btn-secondary">
+                        Cancel
+                    </button>
+                    <button type="submit" 
+                            class="btn btn-primary">
+                        Place Bid
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {{!-- Price Alert --}}
+    <div class="card">
+        <div class="card-body">
+            <h4 class="h5 mb-3">Set Price Alert</h4>
+            <div class="d-flex gap-2">
+                <input type="number" 
+                       placeholder="Enter price" 
+                       class="form-control">
+                <button class="btn btn-success">
+                    Set Alert
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- JavaScript remains the same --}}
+<script>
+    function selectPrice(price) {
+        document.getElementById('bidAmount').value = price;
+        updateTotals();
+    }
+
+    function updateTotals() {
+        const bidAmount = parseFloat(document.getElementById('bidAmount').value) || 0;
+        const quantity = parseInt(document.querySelector('select[name="quantity"]').value);
+        const subtotal = bidAmount * quantity;
+        const serviceFee = subtotal * 0.1; // 10% service fee
+        const total = subtotal + serviceFee;
+
+        document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+        document.getElementById('serviceFee').textContent = `$${serviceFee.toFixed(2)}`;
+        document.getElementById('total').textContent = `$${total.toFixed(2)}`;
+    }
+
+    document.getElementById('bidAmount').addEventListener('input', updateTotals);
+    document.querySelector('select[name="quantity"]').addEventListener('change', updateTotals);
+</script>
