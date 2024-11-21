@@ -1,20 +1,57 @@
-<div class="mb-3" style="margin-left: 50px; margin-right: 50px;">
+<div class="mb-3" style="margin-left: 50px; margin-right: 50px; margin-top: 50px;">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>Hello, User!</h1>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTicketModal">+ Add Ticket</button>
+    </div>
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">Ticket ID</th>
                 <th scope="col">Event Name</th>
-                <th scope="col">For Sale?</th>
+                <th scope="col">Event Date</th>
+                <th scope="col">Ticket ID</th>
+                <th scope="col">Status</th>
             </tr>
         </thead>
         <tbody>
-            {{#each tickets}}
+            <!-- need to add hbs for each ticket in users account display -->
+
+            <!-- these tickets are stubbed and should be replaced with dynamic code-->
                 <tr>
-                    <td>filler 1</td>
-                    <td>filler 2</td>
-                    <td>filler 3</td>
+                    <td>CU vs. OSU</td>
+                    <td>11/29/24</td>
+                    <td>123456789</td>
+                    <td>On Account</td>
                 </tr>
-            {{/each}}
+                <tr>
+                    <td>CU vs. OSU</td>
+                    <td>11/29/24</td>
+                    <td>345678120</td>
+                    <td>Posted For Sale</td>
+                </tr>
         </tbody>
     </table>
+</div>
+
+<!-- need to attach this to a route, so that it actually does something -->
+<div class="modal" tabindex="-1" id="addTicketModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Ticket to Account</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+            <div class="mb-3">
+                <label class="form-label" for="ticketIdInput">Ticket ID</label>
+                <input class="form-control" id="ticketIdInput" name="ticketId" placeholder="You will find this in your ticket confirmation email.">
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <!-- this button does nothing -->
+        <button type="button" class="btn btn-primary">Add Ticket</button>
+      </div>
+    </div>
+  </div>
 </div>
