@@ -155,6 +155,11 @@ app.get('/events', (req, res) => { // TODO: should only be able to access if log
   res.render('pages/events');
 });
 
+// Account Routes
+app.get('/account', (req, res) => { // TODO: should only be able to access if logged in
+  res.render('pages/account');
+});
+
 // Logout Routes
 app.get('/logout', (req, res) => {
   req.session.destroy();
