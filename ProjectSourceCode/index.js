@@ -201,6 +201,32 @@ app.post('/place-bid', (req, res) => {
   res.redirect('/confirmation');
 });
 
+// Confirmation Page
+app.get('/confirmation/:orderId?', async (req, res) => {
+      //fetch this data from your database using the orderId from req.params.orderId
+      const transactionData = {
+          event: {
+              homeTeam: "CU",
+              awayTeam: "Utah",
+              date: "Nov 25, 2024",
+              time: "7:00 PM",
+              location: "Folsom Field"
+          },
+          transaction: {
+              orderId: "ORD-" + req.params.orderId,
+              date: new Date().toLocaleDateString(),
+              paymentMethod: "Credit Card",
+              quantity: 2,
+              pricePerTicket: "85.00",
+              subtotal: "170.00",
+              serviceFee: "17.00",
+              total: "187.00"
+          }
+      };
+
+      res.render('pages/confirmation', transactionData);
+});
+
 // *****************************************************
 // <!-- Section 5 : Start Server-->
 // *****************************************************
