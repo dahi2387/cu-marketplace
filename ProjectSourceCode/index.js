@@ -169,6 +169,10 @@ app.get('/welcome', (req, res) => {
 app.get('/buy', (req, res) => {
   res.render('pages/buy');
 });
+
+app.get('/sell', (req, res) => {
+  res.render('pages/sell');
+});
 // *****************************************************
 // <!-- Section 5 : Start Server-->
 // *****************************************************
