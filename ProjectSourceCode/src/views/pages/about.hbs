@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Buff Market</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+  <div id="container">
+    <h1>About Buff Market</h1>
+
+    <p>Buff Market is a marketplace for students to buy or sell student tickets at market value. Students register with their CU identikey to ensure authenticity. Buyers and sellers can view listings, connect through the marketplace, and use a secure checkout process.</p>
+
+    <h2>Key Features</h2>
+    <ul class="features">
+      <li>Student Identification Login</li>
+      <li>Ability to post and bid on ticket offerings</li>
+      <li>3rd Party Ticket Transfer</li>
+      <li>Secure Payment Integration</li>
+      <li>Market Price Orderbook</li>
+      <li>Share Listing Feature</li>
+    </ul>
+
+    <h2>Team Members</h2>
+    <div class="team-members">
+      <ul>
+        {{#each teamMembers}}
+          <li>
+            <strong>{{name}}</strong> - Email: <a href="mailto:{{email}}">{{email}}</a>, 
+            GitHub: <a href="{{github}}" target="_blank">{{githubUsername}}</a>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+
+    <p class="footer">Visit our <a href="https://github.com/dahi2387/cu-marketplace" target="_blank">GitHub Repository</a> for more details on the project.</p>
+  </div>
+</body>
+</html>

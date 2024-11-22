@@ -237,6 +237,10 @@ app.get('/confirmation/:orderId?', async (req, res) => {
 app.get('/sell', (req, res) => {
   res.render('pages/sell');
 });
+
+app.get('/about', (req, res) => {
+  res.render('pages/about');
+});
 // *****************************************************
 // <!-- Section 5 : Start Server-->
 // *****************************************************
