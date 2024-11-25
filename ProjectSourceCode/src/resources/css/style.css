@@ -1,22 +1,26 @@
 /* Styling Across All Pages */
+
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
+    font-family: "Inter", sans-serif;
 }
 
 body {
-    font-family: Arial, sans-serif;
-   background-color: #352424; /* Solid background color */
+    background-color: #352424; /* Solid background color */
     color: #fff; /* Ensures text contrast */
     min-height: 100vh;
+    margin: 0;
     display: flex;
     flex-direction: column;
+    padding-top: 80px;
 }
 
 /* Main Content */
 main {
     flex: 1; /* Ensures the main content takes up available space */
+    display: flex;
+    justify-content: center; 
+    align-items: center;
     padding: 20px;
 }
 
@@ -88,6 +92,57 @@ p {
     font-size: 16px;
     color: #333;
     margin-top: 8px;
+}
+#nav-bar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    height: 82px;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space between logo and links */
+    padding: 0 20px; /* Add some padding for spacing */
+    border-top: 4px solid #cfb87c;
+    font-weight: 900;
+}
+
+/* Logo styling */
+#logo {
+    display: flex;
+    align-items: center;
+}
+
+#logo-img {
+    height: 36px; /* Adjust size for the CU Buffs logo */
+    margin-right: 10px; /* Space between the logos */
+    margin-left: 12px;
+}
+
+#logo-wordmark {
+    height: 36px; /* Adjust size for wordmark */
+}
+
+/* Navigation Links */
+#nav-links {
+    display: flex;
+    gap: 30px; /* Space between links */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+#nav-link:hover {
+    color: #ffde59; /* Highlight color on hover */
 }
 
 /* Footer */
