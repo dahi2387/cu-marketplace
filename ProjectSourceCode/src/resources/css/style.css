@@ -1,74 +1,89 @@
-/* Styling Across All Pages */
+/* GLOBAL VARIABLES */
+:root {
+    --primary-color: #cfb87c;
+    --secondary-color: #333;  
+    --text-color: black;
+    --background-color: white;
+    --font-weight: 900;
+    --border-bottom: none;
+    --font-family: "Inter", sans-serif;
+}
 
 * {
+    font-family: var(--font-family);
     box-sizing: border-box;
-    font-family: "Inter", sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
+/* DEFAULT LAYOUTS */
 body {
-    background-color: #352424; /* Solid background color */
-    color: #fff; /* Ensures text contrast */
+    color: var(--text-color);
+    background-color: var(--background-color);
     min-height: 100vh;
-    margin: 0;
     display: flex;
     flex-direction: column;
-    padding-top: 80px;
 }
 
-/* Main Content */
 main {
-    flex: 1; /* Ensures the main content takes up available space */
+    flex: 1; 
     display: flex;
     justify-content: center; 
     align-items: center;
     padding: 20px;
 }
 
-/* Headers */
-h1 {
-    font-size: 2.5em;
-    color: #ffde59;
-    margin-bottom: 20px;
+/* HEADERS */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-color);
+    font-weight: var(--font-weight);
     text-align: center;
 }
 
-h2 {
-    color: #ffde59;
-    margin-bottom: 10px;
-    border-bottom: 2px solid #ffde59;
-    display: inline-block;
-    padding-bottom: 5px;
-}
-
-/* Paragraphs */
+/* TEXT */
 p {
+    color: var(--text-color);
     font-size: 1.1em;
     line-height: 1.6;
-    margin-bottom: 20px;
     text-align: center;
+    margin: 10px 0;
 }
 
-/* Containers */
-#container {
-    max-width: 800px;
-    background: rgba(255, 255, 255, 0.15);
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
-    margin: 20px auto;
+/* LINKS */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* BUTTONS */
+.button {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: 700;
+    transition: transform 0.3s, background-color 0.3s;
     text-align: center;
-    backdrop-filter: blur(10px);
+    padding: 12px 25px;
 }
 
-/* Event List */
-#event-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
+.button:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-4px);
 }
 
-#event-card {
+/* EVENT CARDS */
+.card {
     background: rgba(255, 255, 255, 0.9);
     padding: 20px;
     border-radius: 8px;
@@ -79,8 +94,53 @@ p {
     transition: transform 0.2s;
 }
 
-#event-card:hover {
+.card:hover {
     transform: scale(1.05);
+}
+
+/* TABLES */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.table thead {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    font-weight: 700;
+}
+
+.table th, .table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 1rem;
+}
+
+.table th {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(207, 184, 124, 0.2);
+}
+
+/* Event List */
+#event-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
 }
 
 #event-title {
@@ -93,6 +153,39 @@ p {
     color: #333;
     margin-top: 8px;
 }
+
+/* ADD TICKET MODAL */
+.modal-content {
+    border-radius: 15px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    border-bottom: 2px solid var(--secondary-color);
+}
+
+.modal-title {
+    color: var(--primary-color);
+    font-weight: 800;
+    padding-bottom: 10px;
+}
+
+.modal-body {
+    padding: 20px 15px;
+}
+
+.modal-footer .button {
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 8px;
+    background-color: var(--primary-color);
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+/* NAVBAR */
 #nav-bar {
     position: fixed;
     width: 100%;
@@ -103,32 +196,70 @@ p {
     background-color: black;
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Space between logo and links */
-    padding: 0 20px; /* Add some padding for spacing */
+    justify-content: space-between; 
+    padding: 0 20px; 
     border-top: 4px solid #cfb87c;
     font-weight: 900;
 }
 
-/* Logo styling */
+/* FORM INPUT */
+form .form-control {
+    background-color: #f9f9f9;
+    border: 2px solid var(--primary-color); 
+    border-radius: 8px; 
+    padding: 10px; 
+    font-size: 1em; 
+    color: var(--text-color); 
+    transition: border-color 0.3s, box-shadow 0.3s; 
+    width:max-content;
+}
+
+form .form-control:focus {
+    outline: none;
+    border-color: var(--secondary-color); 
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1); 
+}
+
+/* FORM LABEL */
+form .form-label {
+    font-size: 1em;
+    font-weight: 700; 
+    color: var(--secondary-color); 
+    padding-right: 10px;
+}
+
+.form-row {
+    display: flex;              
+    align-items: center;        
+    gap: 10px;                  
+}
+
+#ticketIdInput {
+    flex: 1;
+    padding: 10px;
+    font-size: 1em;
+}
+
+/* NAVBAR IMAGES */
 #logo {
     display: flex;
     align-items: center;
 }
 
 #logo-img {
-    height: 36px; /* Adjust size for the CU Buffs logo */
-    margin-right: 10px; /* Space between the logos */
+    height: 36px;
+    margin-right: 10px;
     margin-left: 12px;
 }
 
 #logo-wordmark {
-    height: 36px; /* Adjust size for wordmark */
+    height: 36px;
 }
 
-/* Navigation Links */
+/* NAVBAR LINKS */
 #nav-links {
     display: flex;
-    gap: 30px; /* Space between links */
+    gap: 30px; 
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -142,19 +273,15 @@ p {
 }
 
 #nav-link:hover {
-    color: #ffde59; /* Highlight color on hover */
+    color: #cfb87c;
 }
 
-/* Footer */
+/* FOOTER */
 footer {
-    background-color: black; /* Solid black background */
-    color: #fff; /* White text for better contrast */
+    background-color: black; 
+    color: #fff;
     text-align: center;
-    padding: 15px 0; /* Consistent padding */
-    font-size: 0.9em;
-    width: 100%;
-    position: relative;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+    padding: 10px 0; 
 }
 
 footer img {
@@ -164,35 +291,8 @@ footer img {
 
 footer p {
     margin: 0;
-}
-
-/* Buttons */
-.button {
-    display: inline-block;
-    background-color: #ffde59;
-    color: #333;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 1em;
-    margin-top: 20px;
-    transition: background-color 0.3s;
-}
-
-.button:hover {
-    background-color: #ffd530;
-}
-
-/* Links */
-a {
-    color: #ffde59;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
+    color: white;
+    font-size: 0.9em;
 }
 
 /* Utility Classes */
@@ -204,4 +304,99 @@ a:hover {
 .col {
     padding: 15px;
     text-align: center;
+}
+
+#homepage {
+    position: relative;
+    overflow: hidden;
+    --text-color: white;
+}
+
+#homepage::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://images.sidearmdev.com/resize?url=https%3A%2F%2Fdxbhsrqyrr690.cloudfront.net%2Fsidearm.nextgen.sites%2Fcubuffs.com%2Fimages%2F2024%2F10%2F23%2FFB_2024_08_29_NDSU_ATS-263.jpg&height=1100&type=webp");
+    background-size: cover;
+    background-position: center;
+    filter: contrast(75%);
+    z-index: -1;
+}
+
+#homepage #container {
+    /*background-image: url("https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/cubuffs.com/images/nextgen_2023/aotw_bg.png");*/
+    background: rgba(0, 0, 0, 0.9);
+    max-width: 800px;
+    padding: 40px;
+    border: 15px solid transparent;
+    border-radius: 15px;
+    box-shadow: 0 0 15px 15px rgba(0, 0, 0, 0.4);
+    margin: 40px auto;
+    text-align: center;
+    background-clip: padding-box;
+    overflow: hidden;
+}
+
+#homepage #container h1 {
+    font-size: 3rem;
+    font-weight: var(--font-weight);
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+#homepage #container p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #f0f0f0;
+    margin-bottom: 30px;
+}
+
+#homepage .button {
+    background-color: var(--primary-color);
+    color: black;
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+#accountpage #container {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+#accountpage #header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+#accountpage #header h1 {
+    font-size: 2rem;
+    font-weight: var(--font-weight);
+    color: var(--secondary-color);
+}
+
+#accountpage h3 {
+    color: var(--secondary-color);
+}
+
+#accountpage .button {
+    padding-top: 10px;
+}
+
+
+#aboutpage {
+    border-bottom: 2px solid #ffde59;
 }
