@@ -345,7 +345,7 @@ footer p {
     font-weight: var(--font-weight);
     color: var(--primary-color);
     margin-bottom: 20px;
-    text-transform: uppercase;
+
 }
 
 #homepage #container p {
@@ -396,8 +396,17 @@ footer p {
     padding-top: 10px;
 }
 
-#aboutpage {
-    border-bottom: 2px solid #ffde59;
+#aboutpage #container {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
 }
 
 #loginpage #container {
@@ -445,4 +454,9 @@ footer p {
 
 #loginpage .button {
     margin-top: 15px;
+}
+
+#logoutpage #container{
+    display: flex;
+    flex-direction: column;
 }
