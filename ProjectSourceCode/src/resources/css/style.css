@@ -191,7 +191,7 @@ a:hover {
     width: 100%;
     top: 0;
     left: 0;
-    z-index: 9999;
+    z-index: 1000;
     height: 82px;
     background-color: black;
     display: flex;
@@ -407,6 +407,20 @@ footer p {
     flex-direction: column;
     gap: 10px;
     text-align: center;
+    margin-top: 7%;
+}
+
+#aboutpage .features {
+    list-style-position: inside;
+    padding-bottom: 10px;
+    padding-left: 35%;
+    text-align: left;
+}
+
+#aboutpage .team-members {
+    list-style: none;
+    text-align: left;
+    padding-left: 20%;
 }
 
 #loginpage #container {
@@ -426,6 +440,11 @@ footer p {
     font-weight: var(--font-weight);
     color: var(--secondary-color);
     padding-bottom: 10px;
+}
+
+#aboutpage #container p {
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 #loginpage .form-label {
