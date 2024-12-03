@@ -1,4 +1,4 @@
-<form action="/register" method="POST" style="margin-left: 400px; margin-right: 400px; margin-top: 30px;">
+<!--<form action="/register" method="POST" style="margin-left: 400px; margin-right: 400px; margin-top: 30px;">
     {{> message}}
 
     <div class="mb-3">
@@ -18,4 +18,23 @@
     <div class="mb-3" style="margin-top: 15px;">
         <p class="form-label">Already have an account? <a href="/login">Login</a></p>
     </div>
-</form>
+</form>-->
+
+<body id="loginpage">
+    <form action="/register" method="post">
+        {{>message}}
+        <div id="container">
+            <h1>Register</h1>
+
+            <label for="usernameInput" class="form-label">Student Email</label>
+            <input id="usernameInput" name="email" class="form-control">
+
+            <label for="passInput" class="form-label">Password</label>
+            <input type="password" id="passInput" name="password" class="form-control">
+
+            <button type="submit" class="button">Register</button>
+
+            <p class="form-label">Already have an account? <a href="/login">Login</a></p>
+        </div>
+    </form>
+</body>
