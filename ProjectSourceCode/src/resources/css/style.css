@@ -396,7 +396,53 @@ footer p {
     padding-top: 10px;
 }
 
-
 #aboutpage {
     border-bottom: 2px solid #ffde59;
+}
+
+#loginpage #container {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#loginpage #container h1 {
+    font-size: 2rem;
+    font-weight: var(--font-weight);
+    color: var(--secondary-color);
+    padding-bottom: 10px;
+}
+
+#loginpage .form-label {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    text-align: left; 
+}
+
+
+#loginpage .form-control {
+    background-color: #f9f9f9;
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    font-size: 1em;
+    color: var(--text-color);
+    transition: border-color 0.3s, box-shadow 0.3s;
+    width: 100%;
+}
+
+#loginpage #container p {
+    font-size: 0.9em;
+    color: var(--text-color);
+    margin-top: 15px;
+}
+
+#loginpage .button {
+    margin-top: 15px;
 }

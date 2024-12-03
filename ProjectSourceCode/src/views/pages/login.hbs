@@ -1,19 +1,41 @@
-<form action="/login" method="POST" style="margin-left: 400px; margin-right: 400px; margin-top: 30px;">
-    {{> message}}
+<!--<body id="loginpage">
+    <form action="/login" method="POST" style="margin-left: 400px; margin-right: 400px; margin-top: 30px;">
+        {{> message}}
+        <div>
+            <div class="mb-3">
+                <h1>Login</h1>
+            </div>
+            <div class="mb-3">
+                <label for="usernameInput" class="form-label">Student Email</label>
+                <input id="usernameInput" name="email" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="passInput" class="form-label">Password</label>
+                <input type="password" id="passInput" name="password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+            <div class="mb-3" style="margin-top: 15px;">
+                <p class="form-label">Don't have an account? <a href="/register">Register</a></p>
+            </div>
+        </div>
+    </form>
+</body>-->
 
-    <div class="mb-3">
-        <h1>Login</h1>
-    </div>
-    <div class="mb-3">
-        <label for="usernameInput" class="form-label">Student Email</label>
-        <input id="usernameInput" name="email" class="form-control">
-    </div>
-    <div class="mb-3">
-        <label for="passInput" class="form-label">Password</label>
-        <input type="password" id="passInput" name="password" class="form-control">
-    </div>
-    <button type="submit" class="btn btn-primary">Login</button>
-    <div class="mb-3" style="margin-top: 15px;">
-        <p class="form-label">Don't have an account? <a href="/register">Register</a></p>
-    </div>
-</form>
+<body id="loginpage">
+    <form action="/login" method="post">
+        {{>message}}
+        <div id="container">
+            <h1>Login</h1>
+
+            <label for="usernameInput" class="form-label">Student Email</label>
+            <input id="usernameInput" name="email" class="form-control">
+
+            <label for="passInput" class="form-label">Password</label>
+            <input type="password" id="passInput" name="password" class="form-control">
+
+            <button type="submit" class="button">Login</button>
+
+            <p class="form-label">Don't have an account? <a href="/register">Register</a></p>
+        </div>
+    </form>
+</body>
