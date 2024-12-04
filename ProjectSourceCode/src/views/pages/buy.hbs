@@ -1,28 +1,59 @@
-<div class="mb-3">
-    <h1 style="margin-left:30px;font-size:60px">Buy</h1>
-</div>
-<div class="row" id="buy">
-    <div class="col-6" height="400px">
-        <p style="margin-left:30px;font-size:45px">Game Info:</p>
-        <div>
-            <p style="margin-left:35px;font-size:30px"> Information</p>
+<!--<body id="buypage">
+    <div class="mb-3">
+        <h1>Buy</h1>
+    </div>
+    <div class="row" id="buy">
+        <div class="col-6" height="400px">
+            <p style="margin-left:30px;font-size:45px">Game Info:</p>
+            <div>
+                <p style="margin-left:35px;font-size:30px"> Information</p>
+            </div>
+        </div>
+        <div class="col-6" height="400px">
+            <div>
+                <p style="font-size:45px">Buy Now for Marketprice</p>
+            </div>
+            <div>
+                <p style="margin-left:10px;font-size:30px">Final Sale: $</p>
+            </div>  
+            <div>
+                <p style="margin-left:10px;font-size:30px">Latest Bid: $</p>
+            </div>
+            <div class="col-9" style="margin-left:10px;">
+                {{!-- <button type="submit" class="btn btn-primary" href="/confirmation">Buy Now</button> --}}
+                <a href="/confirmation" class="btn btn-primary">Buy Now</a>
+                {{!-- <button type="submit" class="btn btn-primary" href="/bid">Place Bid</button> --}}
+                <a href="/bid" class="btn btn-primary">Place Bid</a>
+            </div>
         </div>
     </div>
-    <div class="col-6" height="400px">
-        <div>
-            <p style="font-size:45px">Buy Now for Marketprice</p>
+</body>-->
+
+<body id="buypage">
+    <div id="container">
+        <!-- GAME INFO -->
+        <div id="info-container">
+            <div id="logo-container">
+                <img src="https://images.sidearmdev.com/resize?url=https%3a%2f%2fdxbhsrqyrr690.cloudfront.net%2fsidearm.nextgen.sites%2fcubuffs.com%2fimages%2flogos%2fsite%2fsite.png&height=100&type=webp" alt="University of Colorado Atheletics">
+                <img src="https://conferences.ucla.edu/wp-content/uploads/2021/01/logo6.png" alt="UCLA Athletics">
+            </div>
+            <h1>Colorado vs. UCLA</h1>
+            <h3>Date: October 28, 2024</h3>
+            <h3>Location: Folsom Field</h3>
         </div>
-        <div>
-            <p style="margin-left:10px;font-size:30px">Final Sale: $</p>
-        </div>  
-        <div>
-            <p style="margin-left:10px;font-size:30px">Latest Bid: $</p>
-        </div>
-        <div class="col-9" style="margin-left:10px;">
-            {{!-- <button type="submit" class="btn btn-primary" href="/confirmation">Buy Now</button> --}}
-            <a href="/confirmation" class="btn btn-primary">Buy Now</a>
-            {{!-- <button type="submit" class="btn btn-primary" href="/bid">Place Bid</button> --}}
-            <a href="/bid" class="btn btn-primary">Place Bid</a>
+        <!-- BUY INFO -->
+        <div id="outer-buy-container">
+            <div id="buy-container">
+                <h4>Buy Now for</h4>
+                <h2>$$$</h2>
+                <div id="inner-buy-container">
+                    <a href="/bid" class="button" id="bidbutton">Place Bid</a>
+                    <a href="/confirmation" class="button" id="confbutton">Buy Now</a>
+                </div>
+                <h4>Last Sale: $$$</h4>
+            </div>
+            <a href="/sell" id="sell-link">Sell now for $$$ or Ask For More &RightArrow;</a>
+            
         </div>
     </div>
-</div>
+</body>
