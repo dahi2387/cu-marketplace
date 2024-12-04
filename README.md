@@ -11,11 +11,17 @@
 
 3. Technology Stack:
   TODO: (class tech stack)
+
   Frontend: HTML, Javascript
+
   Backend: Node.js, CSS, SQL
+
   Database: SQL
+
   Authentication: JSON
+
   Testing: Mocha, Chai
+  
 4. Prerequisites to run:
   TODO:
 5. How to run locally:
