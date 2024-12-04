@@ -522,6 +522,7 @@ footer p {
     padding: 20px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 20px;
 }
 
@@ -546,15 +547,22 @@ footer p {
     margin-bottom: 20px;
 }
 
+#buypage #middle-buy-container {
+    display: flex;
+    flex-direction: column;
+    border-bottom-style: solid;
+    border-bottom-color: #cfb87c;
+    border-bottom-width: 1px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+}
+
 #buypage #inner-buy-container {
     display: flex;
     flex-direction: row;
     gap: 10px;
-    border-bottom: #cfb87c;
-    border-bottom-style: solid;
-    border-width: 1px;
-    padding-bottom: 20px;
-    margin-bottom: 15px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 #buypage #info-container {
