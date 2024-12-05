@@ -333,7 +333,7 @@ footer p {
     padding: 40px;
     border: 4px solid #cfb87c;
     border-radius: 15px;
-    box-shadow: 0 0 15px 15px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     margin: 40px auto;
     text-align: center;
     /*background-clip: padding-box;*/
@@ -345,7 +345,6 @@ footer p {
     font-weight: var(--font-weight);
     color: var(--primary-color);
     margin-bottom: 20px;
-
 }
 
 #homepage #container p {
@@ -353,6 +352,8 @@ footer p {
     line-height: 1.8;
     color: #f0f0f0;
     margin-bottom: 30px;
+    margin-left: 7%;
+    margin-right: 7%;
 }
 
 #homepage .button {
@@ -396,18 +397,56 @@ footer p {
     padding-top: 10px;
 }
 
+#aboutpage::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://images.sidearmdev.com/resize?url=https%3A%2F%2Fdxbhsrqyrr690.cloudfront.net%2Fsidearm.nextgen.sites%2Fcubuffs.com%2Fimages%2F2024%2F10%2F23%2FFB_2024_08_29_NDSU_ATS-263.jpg&height=1100&type=webp");
+    background-size: cover;
+    background-position: center;
+    filter: contrast(75%);
+    z-index: -1;
+}
+
 #aboutpage #container {
-    max-width: 1000px;
-    margin: 50px auto;
+    max-width: 60%;
     padding: 40px;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(0, 0, 0, 0.9);
     border-radius: 15px;
+    border: 4px solid #cfb87c;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     gap: 10px;
     text-align: center;
     margin-top: 7%;
+    margin-bottom: 1%;
+    overflow: hidden;
+}
+
+#aboutpage #container h1{
+    font-weight: var(--font-weight);
+    color: var(--primary-color);
+}
+
+#aboutpage #container h2 {
+    font-weight: var(--font-weight);
+    color: var(--primary-color);
+    padding-bottom: 10px;
+}
+
+#aboutpage #container p {
+    margin-left: 7%;
+    margin-right: 7%;
+    color: #f0f0f0;
+    font-size: medium;
+}
+
+#aboutpage #container li {
+    color: #f0f0f0;
 }
 
 #aboutpage .features {
@@ -417,10 +456,69 @@ footer p {
     text-align: left;
 }
 
-#aboutpage .team-members {
-    list-style: none;
-    text-align: left;
-    padding-left: 20%;
+#aboutpage #container #group-icons-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+#aboutpage #container #group-member-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    font-weight: 600;
+}
+
+#aboutpage #container img {
+    width: 60px;
+    border-radius: 50%;
+}
+
+#aboutpage #container a:hover {
+    transform: translateY(-4px);
+}
+
+.features-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid var(--primary-color);
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+    width: 25%;
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
+    padding: 10px;
+    gap: 5px;
+}
+
+.feature-card:hover {
+    transform: scale(1.07);
+    cursor: pointer;
+}
+
+.feature-card h6 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+#aboutpage #container .feature-card h1 {
+    margin-bottom: 0px;
+    font-size: 18px;
+    padding: 5px;
 }
 
 #loginpage #container {
@@ -440,11 +538,6 @@ footer p {
     font-weight: var(--font-weight);
     color: var(--secondary-color);
     padding-bottom: 10px;
-}
-
-#aboutpage #container p {
-    margin-left: 10%;
-    margin-right: 10%;
 }
 
 #loginpage .form-label {
