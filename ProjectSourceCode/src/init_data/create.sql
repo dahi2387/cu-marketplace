@@ -1,10 +1,12 @@
+DROP TABLE IF EXISTS Users;
 CREATE TABLE Users
 (
   Email CHAR(21) NOT NULL,
-  Password INT NOT NULL,
+  Password VARCHAR(50) NOT NULL,
   PRIMARY KEY (Email)
 );
 
+DROP TABLE IF EXISTS Event;
 CREATE TABLE Event
 (
   EventName INT NOT NULL,
@@ -13,6 +15,7 @@ CREATE TABLE Event
   PRIMARY KEY (EventID)
 );
 
+DROP TABLE IF EXISTS Tickets;
 CREATE TABLE Tickets
 (
   TicketID INT NOT NULL,
@@ -24,6 +27,7 @@ CREATE TABLE Tickets
   FOREIGN KEY (EventID) REFERENCES Event(EventID)
 );
 
+DROP TABLE IF EXISTS Asks;
 CREATE TABLE Asks
 (
   Price INT NOT NULL,
@@ -33,6 +37,7 @@ CREATE TABLE Asks
   FOREIGN KEY (Email) REFERENCES Users(Email)
 );
 
+DROP TABLE IF EXISTS Bids;
 CREATE TABLE Bids
 (
   Price INT NOT NULL,
