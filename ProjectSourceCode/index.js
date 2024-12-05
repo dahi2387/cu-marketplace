@@ -242,11 +242,18 @@ app.get('/about', (req, res) => {
   res.render('pages/about');
 });
 
-app.get('/tickets', (req, res) => {
-  const query = "select * from Tickets returning *;"
+app.get('/tickets', async (req, res) => {
+  const query = "select * from Tickets;"
 
-  db.any()
-  res.render('pages/tickets');
+  try {
+    const tickets = db.any(query);
+    res.render('pages/tickets', {
+      tickets
+    });
+  } catch {
+    console.err(err);
+    res.status(500);
+  }
 });
 
 // *****************************************************
