@@ -1,14 +1,14 @@
 CREATE TABLE Users
 (
   Email CHAR(21) NOT NULL,
-  Password INT NOT NULL,
+  Password VARCHAR(40) NOT NULL,
   PRIMARY KEY (Email)
 );
 
 CREATE TABLE Event
 (
-  EventName INT NOT NULL,
-  Date INT NOT NULL,
+  EventName VARCHAR(50) NOT NULL,
+  Date DATE NOT NULL,
   EventID INT NOT NULL,
   PRIMARY KEY (EventID)
 );
@@ -26,7 +26,7 @@ CREATE TABLE Tickets
 
 CREATE TABLE Asks
 (
-  Price INT NOT NULL,
+  Price DECIMAL(9, 2) NOT NULL,
   TicketID INT NOT NULL,
   Email CHAR(21) NOT NULL,
   FOREIGN KEY (TicketID) REFERENCES Tickets(TicketID),
@@ -35,7 +35,7 @@ CREATE TABLE Asks
 
 CREATE TABLE Bids
 (
-  Price INT NOT NULL,
+  Price DECIMAL(9, 2) NOT NULL,
   Email CHAR(21) NOT NULL,
   TicketID INT NOT NULL,
   FOREIGN KEY (Email) REFERENCES Users(Email),

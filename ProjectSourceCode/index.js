@@ -241,6 +241,14 @@ app.get('/sell', (req, res) => {
 app.get('/about', (req, res) => {
   res.render('pages/about');
 });
+
+app.get('/tickets', (req, res) => {
+  const query = "select * from Tickets returning *;"
+
+  db.any()
+  res.render('pages/tickets');
+});
+
 // *****************************************************
 // <!-- Section 5 : Start Server-->
 // *****************************************************

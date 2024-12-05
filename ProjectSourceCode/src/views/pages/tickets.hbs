@@ -1,0 +1,23 @@
+<div class="mb-3" style="margin-left: 50px; margin-right: 50px;">
+    {{> message}}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">EventID</th>
+                <th scope="col">Ticket For Sale</th>
+                <th scope="col">Email</th>
+                <th scope="col">TicketID</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each tickets}}
+                <tr>
+                    <td>{{course_id}}</td>
+                    <td>{{course_name}}</td>
+                    <td>{{credit_hours}}</td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
