@@ -57,7 +57,7 @@
                         <div class="row g-2 mb-3">
                             {{#each event.quickBidOptions}}
                                 <div class="col">
-                                    <button type="button" 
+                                    <button type="button" class="button" 
                                             onclick="selectPrice({{this}})" 
                                             class="btn btn-outline-primary w-100">
                                         ${{this}}
@@ -102,29 +102,31 @@
                     </div>
 
                     {{!-- Price Calculations --}}
-                    <div class="border-top pt-3 mb-3">
-                        <div class="d-flex justify-content-between mb-2">
-                            <span class="text-muted">Subtotal:</span>
-                            <span class="fw-bold" id="subtotal">$0.00</span>
-                        </div>
-                        <div class="d-flex justify-content-between mb-2">
-                            <span class="text-muted">Service Fee:</span>
-                            <span class="fw-bold" id="serviceFee">$0.00</span>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <span class="fw-bold">Total:</span>
-                            <span class="fw-bold" id="total">$0.00</span>
+                    <div id="bid-subtext">
+                        <div class="border-top pt-3 mb-3">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted">Subtotal:</span>
+                                <span class="fw-bold" id="subtotal">$0.00</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted">Service Fee:</span>
+                                <span class="fw-bold" id="serviceFee">$0.00</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span class="fw-bold">Total:</span>
+                                <span class="fw-bold" id="total">$0.00</span>
+                            </div>
                         </div>
                     </div>
 
                     {{!-- Action Buttons --}}
                     <div class="d-flex justify-content-end gap-2">
-                        <button type="button" 
+                        <button type="button" class="button"
                                 onclick="window.history.back()" 
                                 class="btn btn-secondary">
                             Cancel
                         </button>
-                        <button type="submit" 
+                        <button type="submit" class="button"
                                 class="btn btn-primary">
                             Place Bid
                         </button>
@@ -141,7 +143,7 @@
                     <input type="number" 
                         placeholder="Enter price" 
                         class="form-control">
-                    <button class="btn btn-success">
+                    <button class="button" class="btn btn-success">
                         Set Alert
                     </button>
                 </div>
