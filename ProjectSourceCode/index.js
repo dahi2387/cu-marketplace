@@ -12,6 +12,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session'); // To set the session object. To store or access session data, use the `req.session`, which is (generally) serialized as JSON by the store.
 const bcrypt = require('bcryptjs'); //  To hash passwords
 const axios = require('axios'); // To make HTTP requests from our server
+const nodemailer = require('nodemailer');
 
 // *****************************************************
 // <!-- Section 2 : Connect to DB -->
@@ -34,6 +35,52 @@ const dbConfig = {
 };
 
 const db = pgp(dbConfig);
+
+
+// Nodemailer
+function generateVerificationCode() {
+  return Math.floor(100000 + Math.random() * 900000).toString();
+}
+
+console.log('Email credentials being used:');
+console.log('EMAIL_USER:', process.env.EMAIL_USER);
+// Don't log the full password in production, but for testing we can log a few characters
+console.log('EMAIL_PASSWORD first 4 chars:', process.env.EMAIL_PASSWORD?.substring(0, 4));
+console.log('EMAIL_PASSWORD length:', process.env.EMAIL_PASSWORD?.length);
+
+const transporter = nodemailer.createTransport({
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
+  auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASSWORD
+  }
+});
+
+transporter.verify(function(error, success) {
+  if (error) {
+      console.log("Transporter error:", error);
+  } else {
+      console.log("Server is ready to take our messages");
+  }
+});
+
+async function sendVerificationEmail(email, code) {
+  const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: 'Buff Market Email Verification',
+      html: `
+          <h1>Welcome to Buff Market!</h1>
+          <p>Your verification code is: <strong>${code}</strong></p>
+          <p>This code will expire in 15 minutes.</p>
+          <p>If you didn't request this code, please ignore this email.</p>
+      `
+  };
+
+  return transporter.sendMail(mailOptions);
+}
 
 // test your database
 db.connect()
@@ -95,31 +142,96 @@ app.get('/register', (req, res) => {
 });
 
 app.post('/register', async (req, res) => {
-
   const email = req.body.email;
   const emailPattern = /^[a-zA-Z0-9._%+-]+@colorado\.edu$/;
 
   if (!emailPattern.test(email)) {
-    console.log("Invalid email domain.");
-    return res.status(400).send("Invalid email domain. Please use a colorado.edu email.");
+      return res.status(400).send("Invalid email domain. Please use a colorado.edu email.");
   }
 
-  // hash the password using bcrypt library
-  const hash = await bcrypt.hash(req.body.password, 10);
-  const query = "insert into users (email, password) values ($1, $2);";
-  
-  db.none(query, [email, hash])
-    .then(() => {
-      req.session.save();
-      res.redirect('/login');
-    })
-    .catch((err) => {
-      console.log(err);
-      // res.redirect('/register');
+  try {
+      // Generate and store verification code
+      const code = generateVerificationCode();
+      const expiresAt = new Date(Date.now() + 15 * 60000); // 15 minutes from now
+
+      await db.none(
+          'INSERT INTO verification_codes (email, code, expires_at) VALUES ($1, $2, $3)',
+          [email, code, expiresAt]
+      );
+
+      // Store password temporarily in session
+      req.session.pendingRegistration = {
+          email: email,
+          password: req.body.password
+      };
+
+      // Send verification email
+      await sendVerificationEmail(email, code);
+
+      // Redirect to verification page
+      res.redirect('/verify-email');
+  } catch (err) {
+      console.error(err);
       res.render('pages/register', {
-        message: 'There was an error with your registration.',
+          message: 'There was an error sending the verification email.'
       });
-    });
+  }
+});
+
+// Verify Email
+app.get('/verify-email', (req, res) => {
+  if (!req.session.pendingRegistration) {
+      return res.redirect('/register');
+  }
+  res.render('pages/verify-email', { email: req.session.pendingRegistration.email });
+});
+
+app.post('/verify-email', async (req, res) => {
+  const { code } = req.body;
+  const { email, password } = req.session.pendingRegistration;
+
+  try {
+      // Verify code
+      const result = await db.oneOrNone(
+          `SELECT * FROM verification_codes 
+           WHERE email = $1 AND code = $2 AND used = FALSE 
+           AND expires_at > CURRENT_TIMESTAMP
+           ORDER BY created_at DESC LIMIT 1`,
+          [email, code]
+      );
+
+      if (!result) {
+          return res.render('pages/verify-email', {
+              email: email,
+              message: 'Invalid or expired verification code.'
+          });
+      }
+
+      // Mark code as used
+      await db.none(
+          'UPDATE verification_codes SET used = TRUE WHERE id = $1',
+          [result.id]
+      );
+
+      // Create user account
+      const hash = await bcrypt.hash(password, 10);
+      await db.none(
+          'INSERT INTO users (email, password) VALUES ($1, $2)',
+          [email, hash]
+      );
+
+      // Clear pending registration
+      delete req.session.pendingRegistration;
+
+      // Redirect to login
+      res.redirect('/login');
+  } catch (err) {
+      console.error(err);
+      res.render('pages/verify-email', {
+          email: email,
+          message: 'There was an error verifying your email.'
+      });
+  }
 });
 
 // Login Routes
@@ -200,8 +312,9 @@ app.get('/bid', auth, (req, res) => {
 
 // Logout Routes
 app.get('/logout', (req, res) => {
+  const renderData = { loggedIn: false };
   req.session.destroy();
-  res.render('pages/logout',{ loggedIn: req.session.loggedIn });
+  res.render('pages/logout', renderData);
 });
 
 // Lab 11 Stub

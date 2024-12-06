@@ -1,0 +1,23 @@
+{{!-- views/pages/verify-email.hbs --}}
+<body id="loginpage">
+    <form action="/verify-email" method="post">
+        {{>message}}
+        <div id="container">
+            <h1>Verify Your Email</h1>
+            
+            <p>We've sent a verification code to <strong>{{email}}</strong></p>
+            <p>Please check your email and enter the code below:</p>
+
+            <label for="codeInput" class="form-label">Verification Code</label>
+            <input type="text" id="codeInput" name="code" class="form-control" 
+                   pattern="[0-9]{6}" maxlength="6" required>
+
+            <button type="submit" class="button">Verify Email</button>
+
+            <p class="form-label">
+                Didn't receive the code? 
+                <a href="/register">Register again</a>
+            </p>
+        </div>
+    </form>
+</body>

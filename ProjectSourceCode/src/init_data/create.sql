@@ -41,3 +41,12 @@ CREATE TABLE Bids
   FOREIGN KEY (Email) REFERENCES Users(Email),
   FOREIGN KEY (TicketID) REFERENCES Tickets(TicketID)
 );
+
+CREATE TABLE verification_codes (
+  id SERIAL PRIMARY KEY,
+  email VARCHAR(255) NOT NULL,
+  code VARCHAR(6) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  expires_at TIMESTAMP,
+  used BOOLEAN DEFAULT FALSE
+);
