@@ -8,8 +8,11 @@
     <div id="nav-links">
         <a id="nav-link" href="/">Home</a>
         <a id="nav-link" href="/account">Account</a>
-        <a id="nav-link" href="/login">Login</a>
-        <a id="nav-link" href="/logout">Logout</a>
+        {{#if loggedIn}}
+            <a id="nav-link" href="/logout">Logout</a>
+        {{else}}
+            <a id="nav-link" href="/login">Login</a>
+        {{/if}}
         <a id="nav-link" href="/about">About</a>
     </div>
     <!-- BIG 12 LOGO -->

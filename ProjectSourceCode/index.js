@@ -78,12 +78,12 @@ app.use(express.static(path.join(__dirname, 'src', 'resources')));
 
 // Home Routes
 app.get('/', (req, res) => {
-  res.render('pages/home');
+  res.render('pages/home',{ loggedIn: req.session.loggedIn });
 });
 
 // Register Routes
 app.get('/register', (req, res) => {
-  res.render('pages/register');
+  res.render('pages/register',{ loggedIn: req.session.loggedIn });
 });
 
 app.post('/register', async (req, res) => {
@@ -116,7 +116,7 @@ app.post('/register', async (req, res) => {
 
 // Login Routes
 app.get('/login', (req, res) => {
-  res.render('pages/login');
+  res.render('pages/login',{ loggedIn: req.session.loggedIn });
 });
 
 app.post('/login', async (req, res) => {
@@ -154,18 +154,18 @@ app.post('/login', async (req, res) => {
 
 // Events Routes
 app.get('/events', (req, res) => { // TODO: should only be able to access if logged in
-  res.render('pages/events');
+  res.render('pages/events',{ loggedIn: req.session.loggedIn });
 });
 
 // Account Routes
 app.get('/account', (req, res) => { // TODO: should only be able to access if logged in
-  res.render('pages/account');
+  res.render('pages/account',{ loggedIn: req.session.loggedIn });
 });
 
 // Logout Routes
 app.get('/logout', (req, res) => {
   req.session.destroy();
-  res.render('pages/logout');
+  res.render('pages/logout',{ loggedIn: req.session.loggedIn });
 });
 
 // Lab 11 Stub
@@ -197,7 +197,7 @@ app.get('/bid', (req, res) => {
 
   // Render the bid page template with the event data
   // Note the path includes 'pages/' to match your directory structure
-  res.render('pages/bid', eventData);
+  res.render('pages/bid', eventData,{ loggedIn: req.session.loggedIn });
 });
 
 app.post('/place-bid', (req, res) => {
