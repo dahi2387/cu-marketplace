@@ -552,10 +552,25 @@ footer p {
     flex-direction: column;
 }
 
+#title-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#buypage main{
+    flex-direction: column;
+}
+
 #buypage h1 {
+    text-align: left;
+    font-size: 40px;
+}
+
+#buypage #container #info-container h1 {
     padding-bottom: 10px;
     font-size:30px;
-    color: var(--secondary-color)
+    color: var(--secondary-color);
+    text-align: center;
 }
 
 #buypage h2 {
