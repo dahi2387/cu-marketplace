@@ -246,7 +246,7 @@ app.get('/tickets', async (req, res) => {
   const query = "select * from Tickets;"
 
   try {
-    const tickets = db.any(query);
+    const tickets = await db.any(query);
     res.render('pages/tickets', {
       tickets
     });
