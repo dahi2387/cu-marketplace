@@ -1,7 +1,7 @@
 CREATE TABLE Users
 (
   Email CHAR(21) NOT NULL,
-  Password VARCHAR(40) NOT NULL,
+  Password VARCHAR(100) NOT NULL,
   PRIMARY KEY (Email)
 );
 
