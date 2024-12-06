@@ -27,7 +27,6 @@
 5. How to run locally:
    ```bash
    git clone git@github.com:dahi2387/cu-marketplace.git
-   ```bash
    cd git@github.com:dahi2387/cu-marketplace.git
 6. How to run tests:
    ```bash 
