@@ -195,7 +195,7 @@ app.get('/bid', auth, (req, res) => {
   };
 
   // Render the bid page template with the event data
-  res.render('pages/bid', { eventData, loggedIn: req.session.user ? true : false });
+  res.render('pages/bid', {event, loggedIn: req.session.user ? true : false });
 });
 
 // Logout Routes
