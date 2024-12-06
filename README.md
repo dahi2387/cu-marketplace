@@ -23,7 +23,15 @@
     Testing: Mocha, Chai
 
 4. Prerequisites to run:
-  TODO:
+  
+    Node.js and npm: Used for backend 
+
+    Docker/Docker Compose: Used to contain and run the application and database in the environment
+
+    PostgreSQL: Used for maintaining the database
+
+    Mocha and Chai: Used for doing tests on the application 
+    
 5. How to run locally:
    ```bash
    git clone git@github.com:dahi2387/cu-marketplace.git
