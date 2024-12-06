@@ -180,24 +180,22 @@ app.get('/buy', (req, res) => {
 app.get('/bid', (req, res) => {
   // Get from database in the future
   // Also add a way to idetify which event to load info for based on eventID
-  const eventData = {
-    event: {
-        homeTeam: "CU",
-        awayTeam: "Utah",
-        date: "Nov 25, 2024",
-        time: "7:00 PM",
-        location: "Folsom Field",
-        marketPrice: "85.00",
-        lowestAsk: "80.00",
-        highestBid: "75.00",
-        lastSale: "82.50",
-        quickBidOptions: [70, 75, 80]
-    }
+  const event = {
+      homeTeam: "CU",
+      awayTeam: "Utah",
+      date: "Nov 25, 2024",
+      time: "7:00 PM",
+      location: "Folsom Field",
+      marketPrice: "85.00",
+      lowestAsk: "80.00",
+      highestBid: "75.00",
+      lastSale: "82.50",
+      quickBidOptions: [70, 75, 80]
   };
 
   // Render the bid page template with the event data
   // Note the path includes 'pages/' to match your directory structure
-  res.render('pages/bid', { eventData, loggedIn: req.session.loggedIn });
+  res.render('pages/bid', { event, loggedIn: req.session.loggedIn });
 });
 
 app.post('/place-bid', (req, res) => {
