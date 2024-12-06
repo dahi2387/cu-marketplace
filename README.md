@@ -7,10 +7,10 @@
   Students will also be able to see their tickets that they currently have in their possession, and would be able to transfer tickets, share listings, or sell their tickets.
 
 2. Contributors:
-  Kyan Nelson, Daniel Hill, Amir Mhamdi, Maija Grimes, Andrew Perper
+
+    Kyan Nelson, Daniel Hill, Amir Mhamdi, Maija Grimes, Andrew Perper
 
 3. Technology Stack:
-  TODO: (class tech stack)
 
     Frontend: HTML, Javascript, Handlebars
 
@@ -27,9 +27,11 @@
 5. How to run locally:
    ```bash
    git clone git@github.com:dahi2387/cu-marketplace.git
+   ```bash
    cd git@github.com:dahi2387/cu-marketplace.git
 6. How to run tests:
-  TODO:
+   ```bash 
+   docker compose up
 7. Link:
   https://cu-marketplace.onrender.com/
 

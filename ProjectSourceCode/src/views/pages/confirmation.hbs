@@ -1,119 +1,122 @@
-<div class="container py-4">
-    {{!-- Navigation Header --}}
-    <nav class="navbar navbar-light bg-light mb-4">
-        <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1">BUFF MARKET</span>
-            <div>
-                <a href="/profile" class="btn btn-link">Profile</a>
-                <a href="/help" class="btn btn-link">Help</a>
-            </div>
-        </div>
-    </nav>
-
-    {{!-- Success Message Card --}}
-    <div class="card mb-4">
-        <div class="card-body text-center p-5">
-            <div class="mb-4">
-                <i class="bi bi-check-circle text-success" style="font-size: 4rem;"></i>
-            </div>
-            <h2 class="card-title mb-4">Transaction Successful!</h2>
-            <p class="text-muted">Your ticket purchase has been confirmed.</p>
-        </div>
-    </div>
-
-    {{!-- Transaction Details Card --}}
-    <div class="card mb-4">
-        <div class="card-header">
-            <h3 class="h5 mb-0">Transaction Details</h3>
-        </div>
-        <div class="card-body">
-            <div class="row mb-4">
-                <div class="col-md-6">
-                    <h4 class="h6 text-muted mb-3">Event Information</h4>
-                    <p class="mb-1"><strong>{{event.homeTeam}} vs {{event.awayTeam}}</strong></p>
-                    <p class="mb-1">{{event.date}} at {{event.time}}</p>
-                    <p class="mb-1">{{event.location}}</p>
-                </div>
-                <div class="col-md-6">
-                    <h4 class="h6 text-muted mb-3">Purchase Information</h4>
-                    <p class="mb-1"><strong>Order ID:</strong> {{transaction.orderId}}</p>
-                    <p class="mb-1"><strong>Purchase Date:</strong> {{transaction.date}}</p>
-                    <p class="mb-1"><strong>Payment Method:</strong> {{transaction.paymentMethod}}</p>
+<body id="confpage">
+    <div class="container py-4">
+        {{!-- Navigation Header --}}
+        <!--<nav class="navbar navbar-light bg-light mb-4">
+            <div class="container-fluid">
+                <span class="navbar-brand mb-0 h1">BUFF MARKET</span>
+                <div>
+                    <a href="/profile" class="btn btn-link">Profile</a>
+                    <a href="/help" class="btn btn-link">Help</a>
                 </div>
             </div>
+        </nav>-->
 
-            <div class="table-responsive">
-                <table class="table">
-                    <thead class="table-light">
-                        <tr>
-                            <th>Item</th>
-                            <th class="text-center">Quantity</th>
-                            <th class="text-end">Price</th>
-                            <th class="text-end">Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Student Ticket</td>
-                            <td class="text-center">{{transaction.quantity}}</td>
-                            <td class="text-end">${{transaction.pricePerTicket}}</td>
-                            <td class="text-end">${{transaction.subtotal}}</td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="3" class="text-end"><strong>Subtotal:</strong></td>
-                            <td class="text-end">${{transaction.subtotal}}</td>
-                        </tr>
-                        <tr>
-                            <td colspan="3" class="text-end"><strong>Service Fee:</strong></td>
-                            <td class="text-end">${{transaction.serviceFee}}</td>
-                        </tr>
-                        <tr>
-                            <td colspan="3" class="text-end"><strong>Total:</strong></td>
-                            <td class="text-end"><strong>${{transaction.total}}</strong></td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    {{!-- Ticket Information Card --}}
-    <div class="card mb-4">
-        <div class="card-header">
-            <h3 class="h5 mb-0">Ticket Information</h3>
-        </div>
-        <div class="card-body">
-            <div class="alert alert-info" role="alert">
-                <i class="bi bi-info-circle me-2"></i>
-                Your tickets will be available in your account 24 hours before the event.
-            </div>
-            
-            <div class="row g-3">
-                <div class="col-md-6">
-                    <h4 class="h6 text-muted mb-3">Access Instructions</h4>
-                    <ol class="ps-3">
-                        <li class="mb-2">Log in to your CU Boulder account</li>
-                        <li class="mb-2">Go to "My Tickets" section</li>
-                        <li class="mb-2">Show QR code at the gate</li>
-                    </ol>
+        {{!-- Success Message Card --}}
+        <div class="card mb-4">
+            <div class="card-body text-center p-5">
+                <div class="mb-4">
+                    <i class="bi bi-check-circle text-success" style="font-size: 4rem;"></i>
                 </div>
-                <div class="col-md-6">
-                    <h4 class="h6 text-muted mb-3">Important Notes</h4>
-                    <ul class="ps-3">
-                        <li class="mb-2">Valid student ID required at entry</li>
-                        <li class="mb-2">Tickets are non-transferable</li>
-                        <li class="mb-2">Entry is subject to venue policies</li>
-                    </ul>
+                <h2 class="card-title mb-4">Transaction Successful!</h2>
+                <p class="text-muted">Your ticket purchase has been confirmed.</p>
+            </div>
+        </div>
+
+        {{!-- Transaction Details Card --}}
+        <div class="card mb-4">
+            <div class="card-header">
+                <h3 class="h5 mb-0">Transaction Details</h3>
+            </div>
+            <div class="card-body">
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <h4 class="h6 text-muted mb-3">Event Information</h4>
+                        <p class="mb-1"><strong>{{event.homeTeam}} vs {{event.awayTeam}}</strong></p>
+                        <p class="mb-1">{{event.date}} at {{event.time}}</p>
+                        <p class="mb-1">{{event.location}}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h4 class="h6 text-muted mb-3">Purchase Information</h4>
+                        <p class="mb-1"><strong>Order ID:</strong> {{transaction.orderId}}</p>
+                        <p class="mb-1"><strong>Purchase Date:</strong> {{transaction.date}}</p>
+                        <p class="mb-1"><strong>Payment Method:</strong> {{transaction.paymentMethod}}</p>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Item</th>
+                                <th class="text-center">Quantity</th>
+                                <th class="text-end">Price</th>
+                                <th class="text-end">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Student Ticket</td>
+                                <td class="text-center">{{transaction.quantity}}</td>
+                                <td class="text-end">${{transaction.pricePerTicket}}</td>
+                                <td class="text-end">${{transaction.subtotal}}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3" class="text-end"><strong>Subtotal:</strong></td>
+                                <td class="text-end">${{transaction.subtotal}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="text-end"><strong>Service Fee:</strong></td>
+                                <td class="text-end">${{transaction.serviceFee}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="text-end"><strong>Total:</strong></td>
+                                <td class="text-end"><strong>${{transaction.total}}</strong></td>
+                            </tr>
+                        </tfoot>
+                    </table>
                 </div>
             </div>
         </div>
-    </div>
 
-    {{!-- Action Buttons --}}
-    <div class="d-flex justify-content-center gap-3">
-        <a href="/events" class="btn btn-primary">Browse More Events</a>
-        <a href="/profile/tickets" class="btn btn-outline-primary">View My Tickets</a>
+        {{!-- Ticket Information Card --}}
+        <div class="card mb-4">
+            <div class="card-header">
+                <h3 class="h5 mb-0">Ticket Information</h3>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-info" role="alert">
+                    <i class="bi bi-info-circle me-2"></i>
+                    Your tickets will be available in your account 24 hours before the event.
+                </div>
+                
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <h4 class="h6 text-muted mb-3">Access Instructions</h4>
+                        <ol class="ps-3">
+                            <li class="mb-2">Log in to your CU Boulder account</li>
+                            <li class="mb-2">Go to "My Tickets" section</li>
+                            <li class="mb-2">Show QR code at the gate</li>
+                        </ol>
+                    </div>
+                    <div class="col-md-6">
+                        <h4 class="h6 text-muted mb-3">Important Notes</h4>
+                        <ul class="ps-3">
+                            <li class="mb-2">Valid student ID required at entry</li>
+                            <li class="mb-2">Tickets are non-transferable</li>
+                            <li class="mb-2">Entry is subject to venue policies</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{!-- Action Buttons --}}
+        <div class="d-flex justify-content-center gap-3">
+            <a href="/events" class="btn btn-primary">Browse More Events</a>
+            <!--<a href="/profile/tickets" class="btn btn-outline-primary">View My Tickets</a>-->
+            <a href="/account" class="btn btn-outline-primary">View My Tickets</a>
+        </div>
     </div>
-</div>
+</body>
