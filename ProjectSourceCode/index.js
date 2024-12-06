@@ -76,6 +76,14 @@ app.use(express.static(path.join(__dirname, 'src', 'resources')));
 // <!-- Section 4 : API Routes -->
 // *****************************************************
 
+// Login Authentification
+const auth = (req, res, next) => {
+  if (!req.session.user) {
+    return res.redirect('/login');
+  }
+  next();
+};
+
 // Home Routes
 app.get('/', (req, res) => {
   res.render('pages/home',{ loggedIn: req.session.loggedIn });
@@ -152,32 +160,25 @@ app.post('/login', async (req, res) => {
   }
 });
 
-// Events Routes
-app.get('/events', (req, res) => { // TODO: should only be able to access if logged in
-  res.render('pages/events',{ loggedIn: req.session.loggedIn });
-});
-
 // Account Routes
 app.get('/account', (req, res) => { // TODO: should only be able to access if logged in
   res.render('pages/account',{ loggedIn: req.session.loggedIn });
 });
 
-// Logout Routes
-app.get('/logout', (req, res) => {
-  req.session.destroy();
-  res.render('pages/logout',{ loggedIn: req.session.loggedIn });
+// Events Routes
+app.get('/events', (req, res) => {
+  res.render('pages/events', { loggedIn: req.session.user ? true : false });
 });
 
-// Lab 11 Stub
-app.get('/welcome', (req, res) => {
-  res.json({status: 'success', message: 'Welcome!'});
+app.get('/buy', auth, (req, res) => {
+  res.render('pages/buy', { loggedIn: req.session.user ? true : false });
 });
 
-app.get('/buy', (req, res) => {
-  res.render('pages/buy');
+app.get('/sell', auth, (req, res) => {
+  res.render('pages/sell', { loggedIn: req.session.user ? true : false });
 });
 
-app.get('/bid', (req, res) => {
+app.get('/bid', auth, (req, res) => {
   // Get from database in the future
   // Also add a way to idetify which event to load info for based on eventID
   const eventData = {
@@ -196,9 +197,20 @@ app.get('/bid', (req, res) => {
   };
 
   // Render the bid page template with the event data
-  // Note the path includes 'pages/' to match your directory structure
-  res.render('pages/bid', { eventData, loggedIn: req.session.loggedIn });
+  res.render('pages/bid', { eventData, loggedIn: req.session.user ? true : false });
 });
+
+// Logout Routes
+app.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.render('pages/logout',{ loggedIn: req.session.loggedIn });
+});
+
+// Lab 11 Stub
+app.get('/welcome', (req, res) => {
+  res.json({status: 'success', message: 'Welcome!'});
+});
+
 
 app.post('/place-bid', (req, res) => {
   const { bidAmount, quantity, expiration } = req.body;
