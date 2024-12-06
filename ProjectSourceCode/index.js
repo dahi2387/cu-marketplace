@@ -197,7 +197,7 @@ app.get('/bid', (req, res) => {
 
   // Render the bid page template with the event data
   // Note the path includes 'pages/' to match your directory structure
-  res.render('pages/bid', eventData,{ loggedIn: req.session.loggedIn });
+  res.render('pages/bid', { eventData, loggedIn: req.session.loggedIn });
 });
 
 app.post('/place-bid', (req, res) => {
