@@ -183,8 +183,8 @@ app.get('/bid', auth, (req, res) => {
   // Also add a way to idetify which event to load info for based on eventID
   const event = {
       homeTeam: "CU",
-      awayTeam: "Utah",
-      date: "Nov 25, 2024",
+      awayTeam: "UCLA",
+      date: "Oct 28, 2024",
       time: "7:00 PM",
       location: "Folsom Field",
       marketPrice: "85.00",
@@ -224,8 +224,8 @@ app.get('/confirmation/:orderId?', async (req, res) => {
       const transactionData = {
           event: {
               homeTeam: "CU",
-              awayTeam: "Utah",
-              date: "Nov 25, 2024",
+              awayTeam: "UCLA",
+              date: "Oct 28, 2024",
               time: "7:00 PM",
               location: "Folsom Field"
           },
@@ -242,10 +242,6 @@ app.get('/confirmation/:orderId?', async (req, res) => {
       };
 
       res.render('pages/confirmation', transactionData);
-});
-
-app.get('/sell', (req, res) => {
-  res.render('pages/sell');
 });
 
 app.get('/about', (req, res) => {
