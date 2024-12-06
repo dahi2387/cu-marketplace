@@ -22,4 +22,4 @@ services:
       - ./:/repository
     command: 'npm run testandrun'
 volumes:
-  group-project:
+  cu_market_db:
