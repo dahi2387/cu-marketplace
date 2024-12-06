@@ -181,19 +181,17 @@ app.get('/sell', auth, (req, res) => {
 app.get('/bid', auth, (req, res) => {
   // Get from database in the future
   // Also add a way to idetify which event to load info for based on eventID
-  const eventData = {
-    event: {
-        homeTeam: "CU",
-        awayTeam: "Utah",
-        date: "Nov 25, 2024",
-        time: "7:00 PM",
-        location: "Folsom Field",
-        marketPrice: "85.00",
-        lowestAsk: "80.00",
-        highestBid: "75.00",
-        lastSale: "82.50",
-        quickBidOptions: [70, 75, 80]
-    }
+  const event = {
+      homeTeam: "CU",
+      awayTeam: "Utah",
+      date: "Nov 25, 2024",
+      time: "7:00 PM",
+      location: "Folsom Field",
+      marketPrice: "85.00",
+      lowestAsk: "80.00",
+      highestBid: "75.00",
+      lastSale: "82.50",
+      quickBidOptions: [70, 75, 80]
   };
 
   // Render the bid page template with the event data
@@ -258,7 +256,7 @@ app.get('/tickets', async (req, res) => {
   const query = "select * from Tickets;"
 
   try {
-    const tickets = db.any(query);
+    const tickets = await db.any(query);
     res.render('pages/tickets', {
       tickets
     });
