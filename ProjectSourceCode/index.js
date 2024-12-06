@@ -273,8 +273,13 @@ app.post('/login', async (req, res) => {
 });
 
 // Account Routes
-app.get('/account', (req, res) => { // TODO: should only be able to access if logged in
-  res.render('pages/account',{ loggedIn: req.session.loggedIn });
+app.get('/account', auth, (req, res) => {
+  // Get username from email (everything before @)
+  const username = req.session.user.email.split('@')[0];
+  res.render('pages/account', {
+    loggedIn: true, 
+    username: username
+  });
 });
 
 // Events Routes
