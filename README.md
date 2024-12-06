@@ -31,12 +31,15 @@
     PostgreSQL: Used for maintaining the database
 
     Mocha and Chai: Used for doing tests on the application 
-    
+
 5. How to run locally:
    ```bash
    git clone git@github.com:dahi2387/cu-marketplace.git
-   cd git@github.com:dahi2387/cu-marketplace.git
+   cd cu-marketplace.git
 6. How to run tests:
+
+   When running the command "docker compose up" the tests will automatically run in the background once the command is called.
+
    ```bash 
    docker compose up
 7. Link:
