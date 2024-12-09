@@ -155,7 +155,7 @@ app.post('/register', async (req, res) => {
       const expiresAt = new Date(Date.now() + 15 * 60000); // 15 minutes from now
 
       await db.none(
-          'INSERT INTO verification_codes (email, code, expiresAt) VALUES ($1, $2, $3)',
+          'INSERT INTO verification_codes (email, code, expires_at) VALUES ($1, $2, $3)',
           [email, code, expiresAt]
       );
 
@@ -195,7 +195,7 @@ app.post('/verify-email', async (req, res) => {
       const result = await db.oneOrNone(
           `SELECT * FROM verification_codes 
            WHERE email = $1 AND code = $2 AND used = FALSE 
-           AND expiresAt > CURRENT_TIMESTAMP
+           AND expires_at > CURRENT_TIMESTAMP
            ORDER BY created_at DESC LIMIT 1`,
           [email, code]
       );
