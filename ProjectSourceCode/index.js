@@ -27,12 +27,22 @@ const hbs = handlebars.create({
 
 // database configuration
 const dbConfig = {
-  host: process.env.DB_HOST,      // Changed from hardcoded value to env variable
+  host: process.env.DB_HOST || process.env.POSTGRES_HOST,  // Try both environment variables
   port: 5432,
   database: process.env.POSTGRES_DB,
   user: process.env.POSTGRES_USER,
   password: process.env.POSTGRES_PASSWORD,
 };
+
+console.log('Using host:', dbConfig.host);  // Add this debug line
+
+console.log('Database configuration:', {
+  host: process.env.DB_HOST,
+  database: process.env.POSTGRES_DB,
+  user: process.env.POSTGRES_USER,
+  // Don't log the full password
+  passwordLength: process.env.POSTGRES_PASSWORD?.length
+});
 
 const db = pgp(dbConfig);
 

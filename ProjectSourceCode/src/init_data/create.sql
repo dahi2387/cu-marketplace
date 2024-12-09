@@ -17,7 +17,7 @@ CREATE TABLE Tickets
 (
   TicketID INT NOT NULL,
   isForSale INT NOT NULL,
-  Email CHAR(21) NOT NULL,
+  Email VARCHAR(255) NOT NULL,
   EventID INT NOT NULL,
   PRIMARY KEY (TicketID),
   FOREIGN KEY (Email) REFERENCES Users(Email),
