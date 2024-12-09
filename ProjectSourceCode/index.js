@@ -199,6 +199,7 @@ app.post('/verify-email', async (req, res) => {
            ORDER BY created_at DESC LIMIT 1`,
           [email, code]
       );
+      console.log(result);
 
       if (!result) {
           return res.render('pages/verify-email', {
@@ -222,7 +223,7 @@ app.post('/verify-email', async (req, res) => {
 
       // Clear pending registration
       delete req.session.pendingRegistration;
-
+      console.log("got here");
       // Redirect to login
       res.redirect('/login');
   } catch (err) {
