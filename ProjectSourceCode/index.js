@@ -207,20 +207,20 @@ app.post('/verify-email', async (req, res) => {
               message: 'Invalid or expired verification code.'
           });
       }
-
+      
       // Mark code as used
       await db.none(
           'UPDATE verification_codes SET used = TRUE WHERE id = $1',
           [result.id]
       );
-
+      console.log("after update")
       // Create user account
       const hash = await bcrypt.hash(password, 10);
       await db.none(
           'INSERT INTO users (email, password) VALUES ($1, $2)',
           [email, hash]
       );
-
+      console.log("after insert")
       // Clear pending registration
       delete req.session.pendingRegistration;
       console.log("got here");
